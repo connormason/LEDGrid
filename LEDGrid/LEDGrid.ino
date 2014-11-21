@@ -13,6 +13,18 @@ int signal;
 //  signal = Wire.read();
 //}
 
+void set(int channel, int value) {
+  if ((channel < 1) || (channel > 24)) {
+    // invalid channel 
+  } else {
+    if (channel < 13) {
+      Tlc.set(channel - 1, abs(value-4095));
+    } else {
+      Tlc.set(channel - 1 + 4, abs(value-4095)); 
+    }
+  }
+}
+
 void allWhite();
 void nightMode();
 void animation1();
@@ -26,24 +38,26 @@ void setup() {
 }
 
 void loop() { 
-  if (signal == 2) {
-    Serial.print("Party lighting");
-    animation1();
-  } else if (signal == 1) {
-    Serial.print("Night mode");
-    nightMode();
-  } else if (signal == 0) {
-    Serial.print("Normal lighting");
-    allWhite();
-  } else {
-    Serial.print("Error, incorrect signal received");
-  }
+//  if (signal == 2) {
+//    Serial.print("Party lighting");
+//    animation1();
+//  } else if (signal == 1) {
+//    Serial.print("Night mode");
+//    nightMode();
+//  } else if (signal == 0) {
+//    Serial.print("Normal lighting");
+//    allWhite();
+//  } else {
+//    Serial.print("Error, incorrect signal received");
+//  }
+
+  allWhite();
 }
 
 void allWhite() {
   Tlc.clear();
   for (int i = 0; i < 24; i++) {
-    Tlc.set(i, 4095);
+    set(i, 4095);
     Tlc.update();
   }
 }
@@ -51,7 +65,7 @@ void allWhite() {
 void nightMode() {
   Tlc.clear();
   for (int i = 0; i < 24; i+=3) {
-    Tlc.set(i, 4095);
+    Tlc.set(i, 0);
     Tlc.update();
   }
 }
