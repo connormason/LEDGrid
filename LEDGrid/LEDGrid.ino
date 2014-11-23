@@ -8,6 +8,7 @@
 
 int curMode;
 int signal;
+int counter = 0;
 
 //void recieveEvent(int howMany) {
 //  signal = Wire.read();
@@ -27,78 +28,242 @@ void setup() {
 }
 
 void loop() { 
-  allWhite();
-  delay(200);
+  for (int i = 0; i < 3; i++) {
+    while(counter < 15) {
+      if (i == 0) {
+        animation1(); 
+      } else if (i == 1) {
+        animation2();
+      } else {
+        animation3(); 
+      }
+      counter++; 
+    }
+    counter = 0;
+  }
 }
 
 void allWhite() {
   Tlc.clear();
   for (int i = 0; i < 24; i++) {
     Tlc.set(i, 4095);
-    Tlc.update();
   }
+  Tlc.update();
 }
 
 void nightMode() {
   Tlc.clear();
-  for (int i = 0; i < 24; i++) {
-    if ((i % 3) == 0) {
-      Tlc.set(i, 0);
-    } else {
-      Tlc.set(i, 4095);
-    }
-    Tlc.update();
-  }
+  Tlc.set(0, 500);
+  Tlc.set(3, 500);
+  Tlc.set(6, 1000);
+  Tlc.set(9, 500);
+  Tlc.set(12, 500);
+  Tlc.set(15, 500);
+  Tlc.set(18, 1000);
+  Tlc.set(21, 500);
+  Tlc.update();
 }
 
 void animation1() {
-  Tlc.clear();
-  for(int i = 0; i < 2000; i+=4){
-    Tlc.set(0, i);
-    Tlc.set(3, i);
-    Tlc.set(6, i);
-    Tlc.set(9, i);
-    Tlc.set(12, i);
+  int time = 200;
+  for (int i = 0; i < 15; i+=3) {
+    if (i != 0) {
+      Tlc.set(i-3, 0);
+    }
+    Tlc.set(i, 4095);
+    delay(time);
     Tlc.update();
-    delay(1);
   }
-  for(int i = 2000; i > 0; i-=4){
-    Tlc.set(1, i);
-    Tlc.set(4, i);
-    Tlc.set(7, i);
-    Tlc.set(10, i);
-    Tlc.set(13, i);
+  Tlc.set(12, 0);
+  Tlc.set(15, 4095);
+  Tlc.set(16, 0);
+  Tlc.set(17, 0);
+  Tlc.set(18, 4095);
+  Tlc.set(19, 0);
+  Tlc.set(20, 0);
+  Tlc.set(21, 4095);
+  Tlc.set(22, 0);
+  Tlc.set(23, 0);
+  Tlc.update();
+  for (int i = 1; i < 15; i+=3) {
+    if (i != 1) {
+      Tlc.set(i-3, 0);
+    }
+    Tlc.set(i, 4095);
+    delay(time);
     Tlc.update();
-    delay(1);
   }
-  for(int i = 0; i < 1500; i+=2){
-    Tlc.set(0, i);
-    Tlc.set(1, i);
-    Tlc.set(2, i);
-    Tlc.set(3, i);
-    Tlc.set(4, i);
-    Tlc.set(5, i);
-    Tlc.set(6, i);
-    Tlc.set(7, i);
-    Tlc.set(8, i);
-    Tlc.set(9, i);
-    Tlc.set(10, i);
-    Tlc.set(11, i);
-    Tlc.set(12, i);
-    Tlc.set(13, i);
-    Tlc.set(14, i);
+  Tlc.set(13, 0);
+  Tlc.set(15, 0);
+  Tlc.set(16, 4095);
+  Tlc.set(17, 0);
+  Tlc.set(18, 0);
+  Tlc.set(19, 4095);
+  Tlc.set(20, 0);
+  Tlc.set(21, 0);
+  Tlc.set(22, 4095);
+  Tlc.set(23, 0);
+  Tlc.update();
+  for (int i = 2; i < 15; i+=3) {
+    if (i != 2) {
+      Tlc.set(i-3, 0);
+    }
+    Tlc.set(i, 4095);
+    delay(time);
     Tlc.update();
-    delay(1);
   }
-  Tlc.clear();
-  for(int i = 2000; i > 0; i-=4){
-    Tlc.set(2, i);
-    Tlc.set(4, i);
-    Tlc.set(6, i);
-    Tlc.set(10, i);
-    Tlc.set(14, i);
+  Tlc.set(14, 0);
+  Tlc.set(15, 0);
+  Tlc.set(16, 0);
+  Tlc.set(17, 4095);
+  Tlc.set(18, 0);
+  Tlc.set(19, 0);
+  Tlc.set(20, 4095);
+  Tlc.set(21, 0);
+  Tlc.set(22, 0);
+  Tlc.set(23, 4095);
+  Tlc.update();
+}
+
+void animation2() {
+  for (int offset = 0; offset < 3; offset++) {
+    for (int i = 0; i < 4096; i+=5) {
+      Tlc.set(15, i);
+      Tlc.set(16, i);
+      Tlc.set(17, i);
+      Tlc.set(18, i);
+      Tlc.set(19, i);
+      Tlc.set(20, i);
+      Tlc.set(21, i);
+      Tlc.set(22, i);
+      Tlc.set(23, i);
+      delay(1);
+      Tlc.update();
+    } 
+    
+    Tlc.clear();
+    Tlc.set(0 + offset, 0);
+    Tlc.set(3 + offset, 0);
+    Tlc.set(6 + offset, 4095);
+    Tlc.set(9 + offset, 0);
+    Tlc.set(12 + offset, 0);
     Tlc.update();
-    delay(1);
+    
+    for (int i = 4095; i > 0; i-=5) {
+      Tlc.set(15, i);
+      Tlc.set(16, i);
+      Tlc.set(17, i);
+      Tlc.set(18, i);
+      Tlc.set(19, i);
+      Tlc.set(20, i);
+      Tlc.set(21, i);
+      Tlc.set(22, i);
+      Tlc.set(23, i);
+      delay(1);
+      Tlc.update();
+    } 
+    
+    
+    for (int i = 0; i < 4096; i+=5) {
+      Tlc.set(15, i);
+      Tlc.set(16, i);
+      Tlc.set(17, i);
+      Tlc.set(18, i);
+      Tlc.set(19, i);
+      Tlc.set(20, i);
+      Tlc.set(21, i);
+      Tlc.set(22, i);
+      Tlc.set(23, i);
+      delay(1);
+      Tlc.update();
+    } 
+    
+    Tlc.clear();
+    Tlc.set(0 + offset, 0);
+    Tlc.set(3 + offset, 4095);
+    Tlc.set(6 + offset, 0);
+    Tlc.set(9 + offset, 4095);
+    Tlc.set(12 + offset, 0);
+    Tlc.update();
+    
+    for (int i = 4095; i > 0; i-=5) {
+      Tlc.set(15, i);
+      Tlc.set(16, i);
+      Tlc.set(17, i);
+      Tlc.set(18, i);
+      Tlc.set(19, i);
+      Tlc.set(20, i);
+      Tlc.set(21, i);
+      Tlc.set(22, i);
+      Tlc.set(23, i);
+      delay(1);
+      Tlc.update();
+    } 
+    
+    
+    for (int i = 0; i < 4096; i+=5) {
+      Tlc.set(15, i);
+      Tlc.set(16, i);
+      Tlc.set(17, i);
+      Tlc.set(18, i);
+      Tlc.set(19, i);
+      Tlc.set(20, i);
+      Tlc.set(21, i);
+      Tlc.set(22, i);
+      Tlc.set(23, i);
+      delay(1);
+      Tlc.update();
+    } 
+    
+    Tlc.clear();
+    Tlc.set(0 + offset, 4095);
+    Tlc.set(3 + offset, 0);
+    Tlc.set(6 + offset, 0);
+    Tlc.set(9 + offset, 0);
+    Tlc.set(12 + offset, 4095);
+    Tlc.update();
+    
+    for (int i = 4095; i > 0; i-=5) {
+      Tlc.set(15, i);
+      Tlc.set(16, i);
+      Tlc.set(17, i);
+      Tlc.set(18, i);
+      Tlc.set(19, i);
+      Tlc.set(20, i);
+      Tlc.set(21, i);
+      Tlc.set(22, i);
+      Tlc.set(23, i);
+      delay(1);
+      Tlc.update();
+    } 
   }
 }
 
+void animation3() {
+  int time = 300;
+  for (int offset = 0; offset < 3; offset++) {
+    Tlc.clear();
+    Tlc.set(0 + offset, 0);
+    Tlc.set(3 + offset, 0);
+    Tlc.set(6 + offset, 4095);
+    Tlc.set(9 + offset, 0);
+    Tlc.set(12 + offset, 0);
+    Tlc.set(15 + offset, 0);
+    Tlc.set(18 + offset, 4095);
+    Tlc.set(21 + offset, 0);
+    Tlc.update();
+    delay(time);
+    
+    Tlc.clear();
+    Tlc.set(0 + offset, 0);
+    Tlc.set(3 + offset, 4095);
+    Tlc.set(6 + offset, 0);
+    Tlc.set(9 + offset, 4095);
+    Tlc.set(12 + offset, 0);
+    Tlc.set(15 + offset, 4095);
+    Tlc.set(18 + offset, 0);
+    Tlc.set(21 + offset, 4095);
+    Tlc.update();
+    delay(time);
+  }
+}
