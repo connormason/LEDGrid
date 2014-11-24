@@ -1,11 +1,5 @@
 #include <vector>
 
-struct Channel {
-	int red;
-	int green;
-	int blue;
-}
-
 class LEDGrid {
 	public:
 		LEDGrid(int numChannels);
@@ -13,5 +7,5 @@ class LEDGrid {
 		void clear();
 		void update();
 	private:
-		vector<Channel*> channels;
+		int numChannels;
 }
