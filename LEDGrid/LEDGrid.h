@@ -3,6 +3,13 @@
 
 #include "Arduino.h"
 #include "Tlc5940.h"
+#include <vector>
+
+struct Channel {
+	int red;
+	int green;
+	int blue;
+}
 
 class LEDGrid {
 	public:
@@ -11,7 +18,7 @@ class LEDGrid {
 		void clear();
 		void update();
 	private:
-		int numChannels;
+		vector<Channel*> channels;
 }
 
 #endif
