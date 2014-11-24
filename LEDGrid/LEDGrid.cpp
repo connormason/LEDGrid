@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include "LEDGrid.h"
 
 LEDGrid::LEDGrid(int numChannels) {
