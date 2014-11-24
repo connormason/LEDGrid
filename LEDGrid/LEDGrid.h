@@ -1,3 +1,8 @@
+#ifndef LEDGrid_h
+#define LEDGrid_h
+
+#include "Arduino.h"
+
 class LEDGrid {
 	public:
 		LEDGrid(int numChannels);
@@ -7,3 +12,5 @@ class LEDGrid {
 	private:
 		int numChannels;
 }
+
+#endif
