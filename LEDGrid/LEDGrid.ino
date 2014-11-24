@@ -1,19 +1,8 @@
-// I2C Signals
-//   signal = 0 --> all white
-//   signal = 1 --> night mode (dim red)
-//   signal = 2 --> party mode (various animations)
-
 #include <Wire.h>
-#include "Tlc5940.h"
+#include "LEDGrid.h"
 
-int curMode;
-int signal;
+LEDGrid grid;
 int counter = 0;
-
-//void recieveEvent(int howMany) {
-//  signal = Wire.read();
-//}
-
 
 void allWhite();
 void nightMode();
@@ -23,11 +12,7 @@ void animation2();
 void animation3();
 
 void setup() {
-//  Wire.begin(9);
-//  Wire.onReceive(receiveEvent);
-  Tlc.init();
   Serial.begin(9600);
-  signal = 0;
 }
 
 void loop() { 
