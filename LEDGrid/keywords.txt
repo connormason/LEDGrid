@@ -1,0 +1,4 @@
+LEDGrid KEYWORD1
+set     KEYWORD2
+clear   KEYWORD2
+update  KEYWORD2
