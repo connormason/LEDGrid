@@ -13,5 +13,5 @@ class LEDGrid {
 		void clear();
 		void update();
 	private:
-		vector<Channel> channels;
+		vector<Channel*> channels;
 }
