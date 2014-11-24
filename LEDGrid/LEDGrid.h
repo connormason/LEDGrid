@@ -1,5 +1,3 @@
-#include <vector>
-
 class LEDGrid {
 	public:
 		LEDGrid(int numChannels);
