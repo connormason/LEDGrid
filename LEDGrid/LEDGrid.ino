@@ -17,7 +17,10 @@ int counter = 0;
 
 void allWhite();
 void nightMode();
+void chillMode();
 void animation1();
+void animation2();
+void animation3();
 
 void setup() {
 //  Wire.begin(9);
@@ -28,19 +31,21 @@ void setup() {
 }
 
 void loop() { 
-  for (int i = 0; i < 3; i++) {
-    while(counter < 15) {
-      if (i == 0) {
-        animation1(); 
-      } else if (i == 1) {
-        animation2();
-      } else {
-        animation3(); 
-      }
-      counter++; 
-    }
-    counter = 0;
-  }
+  chillMode();
+  
+//  for (int i = 0; i < 3; i++) {
+//    while(counter < 15) {
+//      if (i == 0) {
+//        animation1(); 
+//      } else if (i == 1) {
+//        animation2();
+//      } else {
+//        animation3(); 
+//      }
+//      counter++; 
+//    }
+//    counter = 0;
+//  }
 }
 
 void allWhite() {
@@ -61,6 +66,23 @@ void nightMode() {
   Tlc.set(15, 500);
   Tlc.set(18, 1000);
   Tlc.set(21, 500);
+  Tlc.update();
+}
+
+void chillMode() {
+  Tlc.clear();
+  Tlc.set(0, 1000);
+  Tlc.set(2, 2000);
+  Tlc.set(5, 2200);
+  Tlc.set(6, 2000);
+  Tlc.set(8, 1000);
+  Tlc.set(11, 2200);
+  Tlc.set(12, 1000);
+  Tlc.set(14, 2000);
+  Tlc.set(17, 2200);
+  Tlc.set(18, 2000);
+  Tlc.set(20, 1000);
+  Tlc.set(23, 2200);
   Tlc.update();
 }
 
