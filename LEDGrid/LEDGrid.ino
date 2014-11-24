@@ -34,15 +34,17 @@ void loop() {
 }
 
 void allWhite() {
-  Tlc.clear();
-  for (int i = 0; i < 24; i++) {
-    Tlc.set(i, 4095);
+  grid.clear();
+  for (int i = 0; i < 8; i++) {
+    grid.set(i, 4095, 4095, 4095);
   }
-  Tlc.update();
+  grid.update();
 }
 
 void nightMode() {
-  Tlc.clear();
+  grid.clear();
+  
+  
   Tlc.set(0, 500);
   Tlc.set(3, 500);
   Tlc.set(6, 1000);
