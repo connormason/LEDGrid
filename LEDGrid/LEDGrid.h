@@ -2,6 +2,7 @@
 #define LEDGrid_h
 
 #include "Arduino.h"
+#include "Tlc5940.h"
 
 class LEDGrid {
 	public:
