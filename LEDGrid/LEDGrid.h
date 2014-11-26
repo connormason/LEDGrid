@@ -22,13 +22,12 @@ struct Channel {
 class LEDGrid {
 	public:
 		LEDGrid(int numChannels);
-		
+
 		void set(int channel, int red, int green, int blue);
 		void setColor(int channel, Color input, int brightness);
 		void clearChannel(int channel);
 		void clear();
 		void update();
-		void runAnimation(int animation);
 
 		int numChannels();
 	private:
