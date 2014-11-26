@@ -36,7 +36,7 @@ void loop() {
 void allWhite() {
 	grid.clear();
 	for (int i = 0; i < grid.numChannels; i++) {
-		grid.set(i, 4095, 4095, 4095);
+		grid.setColor(i, WHITE, 4095);
 	}
 	grid.update();
 }
@@ -45,9 +45,9 @@ void nightMode() {
 	grid.clear();
 	for (int i = 0; i < grid.numChannels; i++) {
 		if ((i == 2) || (i == 6)) {
-			grid.set(i, 1000, 0, 0);
+			grid.set(i, RED, 1000);
 		} else {
-			grid.set(i, 500, 0, 0);
+			grid.set(i, RED, 500);
 		}
 	}
 	grid.update();
@@ -56,13 +56,13 @@ void nightMode() {
 void chillMode() {
 	grid.clear();
 	grid.set(0, 1000, 0, 2000);
-	grid.set(1, 0, 0, 2200);
+	grid.set(1, BLUE, 2200);
 	grid.set(2, 2000, 0, 1000);
-	grid.set(3, 0, 0, 2200);
+	grid.set(3, BLUE, 2200);
 	grid.set(4, 1000, 0, 2000);
-	grid.set(5, 0, 0, 2200);
+	grid.set(5, BLUE, 2200);
 	grid.set(6, 2000, 0, 1000);
-	grid.set(7, 0, 0, 2200);
+	grid.set(7, BLUE, 2200);
 	grid.update();
 }
 
@@ -243,29 +243,38 @@ void animation2() {
 
 void animation3() {
 	int time = 300;
-	for (int offset = 0; offset < 3; offset++) {
-		Tlc.clear();
-		Tlc.set(0 + offset, 0);
-		Tlc.set(3 + offset, 0);
-		Tlc.set(6 + offset, 4095);
-		Tlc.set(9 + offset, 0);
-		Tlc.set(12 + offset, 0);
-		Tlc.set(15 + offset, 0);
-		Tlc.set(18 + offset, 4095);
-		Tlc.set(21 + offset, 0);
-		Tlc.update();
+	for (int i = 0; i < 3; offset++) {
+		Color temp;
+		if (i == 0) {
+			temp = RED:
+		} else if (i == 1) {
+			temp = GREEN;
+		} else {
+			temp = BLUE:
+		}
+
+		grid.clear();
+		grid.clearChannel(0);
+		grid.clearChannel(1);
+		grid.setColor(2, temp, 4095);
+		grid.clearChannel(3);
+		grid.clearChannel(4);
+		grid.clearChannel(5);
+		grid.setColor(6, temp, 4095);
+		grid.clearChannel(7);
+		grid.update();
 		delay(time);
-		
-		Tlc.clear();
-		Tlc.set(0 + offset, 0);
-		Tlc.set(3 + offset, 4095);
-		Tlc.set(6 + offset, 0);
-		Tlc.set(9 + offset, 4095);
-		Tlc.set(12 + offset, 0);
-		Tlc.set(15 + offset, 4095);
-		Tlc.set(18 + offset, 0);
-		Tlc.set(21 + offset, 4095);
-		Tlc.update();
+
+		grid.clear();
+		grid.clearChannel(0);
+		grid.setColor(1, temp, 4095);
+		grid.clearChannel(2);
+		grid.setColor(3, temp, 4095);
+		grid.clearChannel(4);
+		grid.setColor(5, temp, 4095);
+		grid.clearChannel(6);
+		grid.setColor(7, temp, 4095);
+		grid.update();
 		delay(time);
 	}
 }
